@@ -14,7 +14,7 @@ function App() {
         <Dashboard>
           <Outlet />
         </Dashboard>
-        <Toaster richColors />
+        <Toaster richColors position="top-right" />
       </QueryClientProvider>
     </WagmiProvider>
   );
