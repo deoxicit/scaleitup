@@ -1,12 +1,23 @@
-import DashboardLayout from './components/ui/layout/DashboardLayout'
-import Dashboard from './components/dashboard/Dashboard'
+import { WagmiProvider } from 'wagmi';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { Dashboard } from '@/components/layout/Dashboard';
+import { config } from './wagmi';
+import { Toaster } from 'sonner';
+import { Outlet } from '@tanstack/react-router';
+
+const queryClient = new QueryClient();
 
 function App() {
   return (
-    <DashboardLayout>
-      <Dashboard />
-    </DashboardLayout>
-  )
+    <WagmiProvider config={config}>
+      <QueryClientProvider client={queryClient}>
+        <Dashboard>
+          <Outlet />
+        </Dashboard>
+        <Toaster richColors />
+      </QueryClientProvider>
+    </WagmiProvider>
+  );
 }
 
-export default App
+export default App;
